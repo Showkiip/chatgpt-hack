@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stunning Travel Blog</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+
+    <link rel="stylesheet" href="travelStyles.css" />
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <header class="hero">
+      <!-- Background video -->
+      <video autoplay muted loop id="heroVideo">
+        <source src="./videos/travel.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="brand">
+          <a href="#home">Travel Blog</a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <h1>Embark on Your Next Adventure</h1>
+        <p>Discover the beauty of the world with us.</p>
+        <a href="#destinations" class="btn">Explore Now</a>
+      </div>
+    </header>
+
+    <!-- Futuristic Cards Section -->
+    <section id="destinations" class="futuristic-cards" data-aos="fade-up">
+      <h2>Top Destinations</h2>
+      <div class="card-container">
+        <!-- Destination Card 1 -->
+        <div class="card">
+          <div class="card-front">
+            <img src="./Images/Education.png" alt="Destination 1" />
+            <h3>Maldives</h3>
+          </div>
+          <div class="card-back">
+            <h3>Maldives</h3>
+            <p>
+              Experience the ultimate tropical paradise with crystal clear
+              waters and white sandy beaches.
+            </p>
+            <a href="#" class="card-btn">Learn More</a>
+          </div>
+        </div>
+        <!-- Destination Card 2 -->
+        <div class="card">
+          <div class="card-front">
+            <img src="./Images/Education2.png" alt="Destination 2" />
+            <h3>Tokyo</h3>
+          </div>
+          <div class="card-back">
+            <h3>Tokyo</h3>
+            <p>
+              Explore the vibrant city life and ancient culture in the heart of
+              Japan.
+            </p>
+            <a href="#" class="card-btn">Learn More</a>
+          </div>
+        </div>
+        <!-- Destination Card 3 -->
+        <div class="card">
+          <div class="card-front">
+            <img src="./Images/Education3.png" alt="Destination 3" />
+            <h3>Paris</h3>
+          </div>
+          <div class="card-back">
+            <h3>Paris</h3>
+            <p>Experience romance and history in the City of Lights.</p>
+            <a href="#" class="card-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Blog Posts Section -->
+    <section id="blog" class="recent-posts" data-aos="fade-up">
+      <h2>Recent Blog Posts</h2>
+      <div class="post-grid">
+        <!-- Blog Post 1 -->
+        <div class="post">
+          <img src="./Images/Interior6.png" alt="Post 1" />
+          <div class="post-content">
+            <h3>A Journey to the Mountains</h3>
+            <p>
+              Discover the beauty of the mountains with our latest adventure...
+            </p>
+          </div>
+        </div>
+        <!-- Blog Post 2 -->
+        <div class="post">
+          <img src="./Images/Interior5.png" alt="Post 2" />
+          <div class="post-content">
+            <h3>Exploring the Coastline</h3>
+            <p>Experience the serene beaches and coastal landscapes...</p>
+          </div>
+        </div>
+        <!-- Blog Post 3 -->
+        <div class="post">
+          <img src="./Images/Interior4.png" alt="Post 3" />
+          <div class="post-content">
+            <h3>City Adventures</h3>
+            <p>Find the best spots in the city for a perfect getaway...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section id="map" class="map-section" data-aos="fade-up">
+      <h2>Explore Our Interactive Map</h2>
+      <div class="map-container">
+        <!-- Placeholder for an SVG or Canvas map -->
+        <img src="./Images/map.png" alt="Map of Popular Destinations" />
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials" data-aos="fade-up">
+      <h2>Traveler Experiences</h2>
+      <div class="testimonial-carousel">
+        <!-- Testimonial 1 -->
+        <div class="testimonial">
+          <img src="./Images/Dp1.png" alt="User 1" />
+          <p>"This was the best travel experience I've ever had!"</p>
+          <h4>- John Doe</h4>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial">
+          <img src="./Images/Dp2.png" alt="User 2" />
+          <p>"Amazing destinations and fantastic service."</p>
+          <h4>- Jane Smith</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Sign-Up Section -->
+    <section id="contact" class="newsletter" data-aos="fade-up">
+      <h2>Stay Updated</h2>
+      <p>
+        Sign up for our newsletter to get the latest updates and travel tips.
+      </p>
+      <form>
+        <input type="email" placeholder="Enter your email" />
+        <button type="submit">Sign Up</button>
+      </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+      <div class="social-media">
+        <a href="#"><img src="facebook-icon.png" alt="Facebook" /></a>
+        <a href="#"><img src="twitter-icon.png" alt="Twitter" /></a>
+        <a href="#"><img src="instagram-icon.png" alt="Instagram" /></a>
+      </div>
+      <p>&copy; 2024 Travel Blog. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Include this at the bottom of your HTML before the closing body tag -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS (Animate On Scroll)
+      AOS.init();
+
+      // Testimonial Carousel Script
+      document.addEventListener("DOMContentLoaded", function () {
+        const testimonials = document.querySelectorAll(".testimonial");
+        let currentIndex = 0;
+
+        function showTestimonial(index) {
+          testimonials.forEach((testimonial, i) => {
+            testimonial.style.display = i === index ? "block" : "none";
+          });
+        }
+
+        function nextTestimonial() {
+          currentIndex = (currentIndex + 1) % testimonials.length;
+          showTestimonial(currentIndex);
+        }
+
+        setInterval(nextTestimonial, 5000); // Change testimonial every 5 seconds
+        showTestimonial(currentIndex); // Initial display
+      });
+
+      // JavaScript for Navbar Scroll Effect and Mobile Menu Toggle
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navLinks = document.querySelector(".nav-links");
+
+        // Navbar scroll effect
+        window.addEventListener("scroll", function () {
+          navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        // Mobile menu toggle
+        mobileMenu.addEventListener("click", function () {
+          navLinks.classList.toggle("show");
+        });
+      });
+    </script>
+  </body>
+</html>

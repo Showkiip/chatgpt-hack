@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="welcome-text">
+                <h2>Welcome Back</h2>
+                <p>Please log in to your account to continue</p>
+            </div>
+            <form class="login-form">
+                <h2>LOGIN</h2>
+                <div class="input-box">
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Log in">
+                </div>
+                <div class="login-extra">
+                    <a href="#">Forgot password?</a>
+                    <p>Don't have an account? <a href="#">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

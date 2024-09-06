@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero Slider</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        .hero-slider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-display {
+            width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 5px solid #00ffcc;
+            position: relative;
+            transition: background-image 0.5s ease-in-out, filter 0.5s ease-in-out;
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ffcc;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            margin: 5px 0 0;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .thumbnail {
+            width: 120px;
+            height: 80px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            border: 3px solid #00ffcc;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+        }
+
+        .thumbnail-container::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, transparent, #00ffcc, transparent);
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-slider">
+        <div class="hero-display" id="heroDisplay">
+            <div class="hero-content" id="heroContent">
+                <h1>Title</h1>
+                <p>Description goes here.</p>
+            </div>
+        </div>
+        <div class="thumbnail-container">
+            <img
+                src="./Images/Boxing.png"
+                alt="Image 1"
+                class="thumbnail"
+                onclick="changeImage('./Images/Boxing.png', 'Boxing', 'Get ready for the action with our boxing gear!')"
+            />
+            <img
+                src="./Images/Coding.png"
+                alt="Image 2"
+                class="thumbnail"
+                onclick="changeImage('./Images/Coding.png', 'Coding', 'Explore the world of coding with our latest tutorials.')"
+            />
+            <img
+                src="./Images/ComputerImage.png"
+                alt="Image 3"
+                class="thumbnail"
+                onclick="changeImage('./Images/ComputerImage.png', 'Technology', 'Embrace cutting-edge technology with our new gadgets.')"
+            />
+            <!-- Add more thumbnails as needed -->
+        </div>
+    </div>
+    <script>
+        function changeImage(imageUrl, title, description) {
+            const heroDisplay = document.getElementById('heroDisplay');
+            const heroContent = document.getElementById('heroContent');
+
+            heroDisplay.style.backgroundImage = `url('${imageUrl}')`;
+            heroDisplay.style.filter = 'brightness(70%)';
+            
+            heroContent.querySelector('h1').textContent = title;
+            heroContent.querySelector('p').textContent = description;
+
+            heroContent.style.opacity = 1;
+        }
+    </script>
+</body>
+</html>

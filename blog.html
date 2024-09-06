@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Compiler</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 20px;
+        }
+
+        #compiler-form {
+            background-color: #252526;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 60%;
+            max-width: 900px;
+        }
+
+        select, button {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #333;
+            color: #dcdcdc;
+            border: 1px solid #444;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        textarea {
+            resize: vertical;
+            width: 100%;
+            height: 200px;
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button {
+            background-color: #007acc;
+            border: none;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #005f9e;
+        }
+
+        .code-editor {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 10px;
+            overflow: auto;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .code-editor pre {
+            margin: 0;
+        }
+
+        .code-editor code {
+            display: block;
+        }
+
+        .output-container {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 15px;
+            width: 60%;
+            max-width: 900px;
+            white-space: pre-wrap;
+            overflow: auto;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Compiler</h1>
+    <form id="compiler-form">
+        <select id="language">
+            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+            <option value="php">PHP</option>
+            <option value="javascript">JavaScript</option>
+            <option value="c">C</option>
+        </select>
+        <textarea id="code" placeholder="Write your code here..."></textarea>
+        <button type="submit">Run</button>
+    </form>
+    <div id="output" class="output-container"></div>
+
+    <!-- Prism.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+
+    <script>
+        const languageTags = {
+            python: '#!/usr/bin/env python3\n',
+            cpp: '#include <iostream>\nusing namespace std;\nint main() {\n    // your code here\n    return 0;\n}\n',
+            php: '<?php\n',
+            javascript: '// your code here\n',
+            c: '#include <stdio.h>\nint main() {\n    // your code here\n    return 0;\n}\n'
+        };
+
+        function updateEditor() {
+            const language = document.getElementById('language').value;
+            const codeEditor = document.querySelector('#code');
+
+            // Remove any existing language class
+            codeEditor.classList.remove('language-python', 'language-cpp', 'language-php', 'language-javascript', 'language-c');
+
+            // Add the new language class
+            codeEditor.classList.add(`language-${language}`);
+            
+            // Prepend language-specific tag
+            codeEditor.value = languageTags[language] + codeEditor.value.replace(/^.*?\n/, '');
+
+            // Trigger syntax highlighting
+            Prism.highlightElement(codeEditor);
+        }
+
+        // Update editor syntax highlighting and language tag on language change
+        document.getElementById('language').addEventListener('change', updateEditor);
+
+        document.getElementById('compiler-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const response = await fetch('http://127.0.0.1:5001/run', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    language: document.getElementById('language').value,
+                    code: document.getElementById('code').value
+                })
+            });
+
+            const result = await response.json();
+
+            const outputElement = document.getElementById('output');
+            outputElement.textContent = ''; // Clear previous output
+
+            // Display stdout
+            if (result.stdout) {
+                outputElement.textContent += `stdout:\n${result.stdout}`;
+            }
+
+            // Display stderr
+            if (result.stderr) {
+                outputElement.textContent += `\nstderr:\n${result.stderr}`;
+            }
+        });
+    </script>
+</body>
+</html>
