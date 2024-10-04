@@ -1,317 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Website with Login Modal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: url('./Images/Boxing3.png') no-repeat center center fixed;
-    background-size: cover;
-}
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background: url("./Images/Boxing3.png") no-repeat center center fixed;
+        background-size: cover;
+      }
 
-.navbar {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px 0;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-}
+      .navbar {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 10px 0;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+      }
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
 
-.logo {
-    color: #fff;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
-}
+      .logo {
+        color: #fff;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+      }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
+      .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
 
-.nav-links li {
-    margin: 0 10px;
-}
+      .nav-links li {
+        margin: 0 10px;
+      }
 
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s ease;
+      }
 
-.nav-links a:hover {
-    color: #03a9f4;
-}
+      .nav-links a:hover {
+        color: #03a9f4;
+      }
 
-.login-btn {
-    padding: 8px 15px;
-    background: #03a9f4;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
+      .login-btn {
+        padding: 8px 15px;
+        background: #03a9f4;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+      }
 
-.login-btn:hover {
-    background: #0288d1;
-}
+      .login-btn:hover {
+        background: #0288d1;
+      }
 
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
 
-.modal-content {
-    background-color: rgba(0, 0, 0, 0.7);
-    margin: 100px auto;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 800px;
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-}
+      .modal-content {
+        background-color: rgba(0, 0, 0, 0.7);
+        margin: 100px auto;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 800px;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+      }
 
-.close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: #fff;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
 
-.login-container {
-    width: 100%;
-}
+      .login-container {
+        width: 100%;
+      }
 
-.login-box {
-    display: flex;
-    flex-direction: row;
-    color: #fff;
-}
+      .login-box {
+        display: flex;
+        flex-direction: row;
+        color: #fff;
+      }
 
-.welcome-text {
-    width: 50%;
-    padding-right: 30px;
-}
+      .welcome-text {
+        width: 50%;
+        padding-right: 30px;
+      }
 
-.welcome-text h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
+      .welcome-text h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
 
-.welcome-text p {
-    font-size: 14px;
-    line-height: 1.5;
-}
+      .welcome-text p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
 
-.login-form {
-    width: 50%;
-}
+      .login-form {
+        width: 50%;
+      }
 
-.login-form h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    font-weight: 600;
-}
+      .login-form h2 {
+        margin-bottom: 20px;
+        font-size: 22px;
+        font-weight: 600;
+      }
 
-.input-box {
-    position: relative;
-    margin-bottom: 30px;
-}
+      .input-box {
+        position: relative;
+        margin-bottom: 30px;
+      }
 
-.input-box input {
-    width: 100%;
-    padding: 10px;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #fff;
-    outline: none;
-    color: #fff;
-    font-size: 18px;
-}
+      .input-box input {
+        width: 100%;
+        padding: 10px;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #fff;
+        outline: none;
+        color: #fff;
+        font-size: 18px;
+      }
 
-.input-box label {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 18px;
-    pointer-events: none;
-    transition: 0.5s;
-}
+      .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        color: #fff;
+        font-size: 18px;
+        pointer-events: none;
+        transition: 0.5s;
+      }
 
-.input-box input:focus ~ label,
-.input-box input:valid ~ label {
-    top: -5px;
-    font-size: 14px;
-    color: #03a9f4;
-}
+      .input-box input:focus ~ label,
+      .input-box input:valid ~ label {
+        top: -5px;
+        font-size: 14px;
+        color: #03a9f4;
+      }
 
-.button input {
-    width: 100%;
-    background: #03a9f4;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
+      .button input {
+        width: 100%;
+        background: #03a9f4;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+      }
 
-.button input:hover {
-    background: #0288d1;
-}
+      .button input:hover {
+        background: #0288d1;
+      }
 
-.login-extra {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
+      .login-extra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
 
-.login-extra a {
-    color: #03a9f4;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
+      .login-extra a {
+        color: #03a9f4;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+      }
 
-.login-extra a:hover {
-    color: #0288d1;
-}
+      .login-extra a:hover {
+        color: #0288d1;
+      }
 
-.login-extra p {
-    font-size: 14px;
-}
+      .login-extra p {
+        font-size: 14px;
+      }
 
-.login-extra p a {
-    color: #03a9f4;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
+      .login-extra p a {
+        color: #03a9f4;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
 
-.login-extra p a:hover {
-    color: #0288d1;
-}
-
+      .login-extra p a:hover {
+        color: #0288d1;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">CodingNepal</a>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
-                <li><button id="loginBtn" class="login-btn">Log in</button></li>
-            </ul>
-        </div>
+      <div class="container">
+        <a href="#" class="logo">CodingNepal</a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><button id="loginBtn" class="login-btn">Log in</button></li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Login Modal -->
     <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="login-container">
-                <div class="login-box">
-                    <div class="welcome-text">
-                        <h2>Welcome Back</h2>
-                        <p>Please log in to your account to continue</p>
-                    </div>
-                    <form class="login-form">
-                        <h2>LOGIN</h2>
-                        <div class="input-box">
-                            <input type="email" required>
-                            <label>Email</label>
-                        </div>
-                        <div class="input-box">
-                            <input type="password" required>
-                            <label>Password</label>
-                        </div>
-                        <div class="button">
-                            <input type="submit" value="Log in">
-                        </div>
-                        <div class="login-extra">
-                            <a href="#">Forgot password?</a>
-                            <p>Don't have an account? <a href="#">Sign up</a></p>
-                        </div>
-                    </form>
-                </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="login-container">
+          <div class="login-box">
+            <div class="welcome-text">
+              <h2>Welcome Back</h2>
+              <p>Please log in to your account to continue</p>
             </div>
+            <form class="login-form">
+              <h2>LOGIN</h2>
+              <div class="input-box">
+                <input type="email" required />
+                <label>Email</label>
+              </div>
+              <div class="input-box">
+                <input type="password" required />
+                <label>Password</label>
+              </div>
+              <div class="button">
+                <input type="submit" value="Log in" />
+              </div>
+              <div class="login-extra">
+                <a href="#">Forgot password?</a>
+                <p>Don't have an account? <a href="#">Sign up</a></p>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
-   <script>
-    // Get modal element
-var modal = document.getElementById('loginModal');
-// Get open modal button
-var loginBtn = document.getElementById('loginBtn');
-// Get close button
-var closeBtn = document.getElementsByClassName('close')[0];
-
-// Listen for open click
-loginBtn.addEventListener('click', openModal);
-// Listen for close click
-closeBtn.addEventListener('click', closeModal);
-// Listen for outside click
-window.addEventListener('click', clickOutside);
-
-// Function to open modal
-function openModal() {
-    modal.style.display = 'block';
-}
-
-// Function to close modal
-function closeModal() {
-    modal.style.display = 'none';
-}
-
-// Function to close modal if outside click
-function clickOutside(e) {
-    if (e.target == modal) {
-        modal.style.display = 'none';
-    }
-}
-
-   </script>
-</body>
+    <script>
+      var modal = document.getElementById("loginModal");
+      var loginBtn = document.getElementById("loginBtn");
+      var closeBtn = document.getElementsByClassName("close")[0];
+      loginBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+      window.addEventListener("click", clickOutside);
+      function openModal() {
+        modal.style.display = "block";
+      }
+      function closeModal() {
+        modal.style.display = "none";
+      }
+      function clickOutside(e) {
+        if (e.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+  </body>
 </html>

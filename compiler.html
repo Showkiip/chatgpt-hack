@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISHUB Online Compiler</title>
+  
+  <!-- Load Monaco Editor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js"></script>
+
+  <style>
+    /* Reset and body styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #1e1e1e;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Header styling */
+    header {
+      background-color: #252526;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    header select, header button {
+      padding: 5px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 3px;
+    }
+
+    header select {
+      background-color: white;
+      color: black;
+    }
+
+    header button {
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    header button:hover {
+      background-color: #005f99;
+    }
+
+    /* Layout for the editor and output sections */
+    .container {
+      display: flex;
+      height: 100%;
+    }
+
+    .editor {
+      flex: 2;
+      height: 100%;
+      position: relative;
+    }
+
+    .output {
+      flex: 1;
+      background-color: #252526;
+      padding: 10px;
+      border-left: 1px solid #444;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .output pre {
+      background-color: #1e1e1e;
+      padding: 10px;
+      flex: 1;
+      overflow-y: auto;
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ISHUB Online Compiler</h1>
+
+    <div>
+      <label for="language">Language:</label>
+      <select id="language">
+        <option value="python">Python</option>
+        <option value="cpp">C++</option>
+        <option value="c">C</option>
+        <option value="php">PHP</option>
+        <option value="javascript">JavaScript</option>
+      </select>
+      <button onclick="runCode()">Run Code</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Monaco Editor Section -->
+    <div id="editor" class="editor"></div>
+
+    <!-- Output and Error Section -->
+    <div class="output">
+      <h2>Output</h2>
+      <pre id="output">Your output will appear here...</pre>
+      <h2>Error</h2>
+      <pre id="error" class="error">Your errors will appear here...</pre>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Monaco Editor with the VS Code theme
+    require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs' }});
+    require(['vs/editor/editor.main'], function () {
+      window.editor = monaco.editor.create(document.getElementById('editor'), {
+        value: `# Write a Python function\ndef hello_world():\n    return "Hello, World!"\n\nprint(hello_world())`,
+        language: 'python',
+        theme: 'vs-dark',
+        automaticLayout: true,
+        fontSize: 16,
+        scrollBeyondLastLine: false,
+      });
+    });
+
+    // Code templates based on the selected language
+    const codeTemplates = {
+      python: `# Write a Python function\ndef hello_world():\n    return "Hello, World!"\n\nprint(hello_world())`,
+      cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, World!";\n    return 0;\n}`,
+      c: `#include <stdio.h>\n\nint main() {\n    printf("Hello, World!");\n    return 0;\n}`,
+      php: `<?php\nfunction hello_world() {\n    echo "Hello, World!";\n}\nhello_world();\n?>`,
+      javascript: `function helloWorld() {\n    return "Hello, World!";\n}\nconsole.log(helloWorld());`,
+    };
+
+    // Change the editor language and template when the user selects a different language
+    document.getElementById("language").addEventListener("change", function() {
+      const selectedLanguage = this.value;
+      window.editor.setValue(codeTemplates[selectedLanguage]);
+      monaco.editor.setModelLanguage(window.editor.getModel(), selectedLanguage);
+    });
+
+    // Function to run the code and call the Flask API using Fetch
+    async function runCode() {
+      const language = document.getElementById('language').value;
+      const code = window.editor.getValue();
+      const outputElement = document.getElementById('output');
+      const errorElement = document.getElementById('error');
+
+      // Reset the output and error fields
+      outputElement.textContent = "Executing...";
+      errorElement.textContent = "";
+
+      try {
+        // Call the backend API to run the code using Fetch
+        const response = await fetch("http://192.168.18.20:8000/compiler-run", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ language: language, code: code })
+        });
+
+        const data = await response.json();
+
+        // Update the output and error fields based on the API response
+        outputElement.textContent = data.stdout || "No Output";
+        errorElement.textContent = data.stderr || "";
+      } catch (error) {
+        console.error("Error calling API", error);
+        errorElement.textContent = "Failed to run code. Please try again.";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradient Login Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body,
+      html {
+        font-family: "Poppins", sans-serif;
+        height: 100%;
+        background-color: #0d0d0d;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .login-section {
+        width: 35%;
+        background-color: #1c1f3f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+      }
+
+      .login-box {
+        width: 100%;
+        max-width: 350px;
+        text-align: center;
+        color: white;
+      }
+
+      .logo img {
+        width: 100px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+
+      .input-box {
+        margin-bottom: 15px;
+      }
+
+      .input-box input {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 25px;
+        background-color: #f5f5f5;
+        font-size: 16px;
+        margin-bottom: 10px;
+        outline: none;
+        text-align: center;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 15px;
+        background-color: #ff007c;
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      .login-btn:hover {
+        background-color: #e60072;
+      }
+
+      .remember-forgot {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-size: 14px;
+      }
+
+      .remember-forgot a {
+        color: #ff007c;
+        text-decoration: none;
+      }
+
+      .welcome-section {
+        width: 65%;
+        background: linear-gradient(135deg, #2b227e, #4e01a0, #6e00c0);
+        color: white;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-size: cover;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: flex-end;
+        list-style-type: none;
+        margin-bottom: 30px;
+      }
+
+      nav ul li {
+        margin-left: 30px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      nav ul li a.sign-in {
+        padding: 10px 20px;
+        border: 1px solid white;
+        border-radius: 25px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav ul li a.sign-in:hover {
+        background-color: white;
+        color: #2b227e;
+      }
+
+      .welcome-message {
+        text-align: center;
+      }
+
+      .welcome-message h1 {
+        font-size: 60px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+      }
+
+      .welcome-message p a {
+        color: #ff007c;
+        text-decoration: none;
+      }
+
+      .welcome-message p {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="login-section">
+        <div class="login-box">
+          <div class="logo">
+            <img src="Images/Dp1.png" alt="Template Logo" />
+          </div>
+          <form>
+            <h2>LOGIN</h2>
+            <div class="input-box">
+              <input type="text" placeholder="Username" />
+            </div>
+            <div class="input-box">
+              <input type="password" placeholder="Password" />
+            </div>
+            <button type="submit" class="login-btn">LOGIN</button>
+            <div class="remember-forgot">
+              <label><input type="checkbox" /> Remember me</label>
+              <a href="#">Forgot your password?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="welcome-section">
+        <nav>
+          <ul>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">DOWNLOAD</a></li>
+            <li><a href="#">PRICING</a></li>
+            <li><a href="#">FEATURES</a></li>
+            <li><a href="#">CONTACT</a></li>
+            <li><a href="#" class="sign-in">SIGN IN</a></li>
+          </ul>
+        </nav>
+        <div class="welcome-message">
+          <h1>Welcome.</h1>
+          <p>Not a member yet? <a href="#">Sign up now</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
